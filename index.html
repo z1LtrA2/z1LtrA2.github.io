@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festividad de la Antioqueñidad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B00; /* Naranja vibrante */
+            --secondary: #FFDE59; /* Amarillo festivo */
+            --accent: #E83A14; /* Rojo terracota */
+            --light: #ffffff; /* Fondo cálido */
+            --dark: #5E2605; /* Marrón oscuro */
+            --highlight: #FF9500; /* Naranja dorado */
+            --text: #3A1E00; /* Marrón oscuro para texto */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Quicksand', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--light);
+        }
+        
+        header {
+            background: linear-gradient(135deg, rgba(232,58,20,0.8), rgba(255,107,0,0.8)), url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8b0eda86-a426-472f-9421-09f12626773b.png') center/cover;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Merriweather', serif;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeIn 1.5s;
+            color: var(--secondary);
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            color: var(--accent);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            position: relative;
+            display: inline-block;
+            margin: 2rem 0;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            bottom: -8px;
+            left: 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        h2:hover::after {
+            width: 100%;
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .intro {
+            text-align: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 12px;
+            margin: -3rem auto 3rem;
+            position: relative;
+            max-width: 90%;
+            box-shadow: 0 8px 20px rgba(255,107,0,0.1);
+            border: 2px solid var(--secondary);
+            transition: all 0.4s ease;
+        }
+        
+        .intro:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(255,107,0,0.2);
+            border-color: var(--primary);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 14px 28px rgba(255,107,0,0.2);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 60%, rgba(255,222,89,0.1));
+            z-index: 1;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover::before {
+            opacity: 1;
+        }
+        
+        .card-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover .card-image::after {
+            opacity: 1;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        .card:hover .card-image img {
+            transform: scale(1.1) rotate(1deg);
+        }
+        
+        .card-content {
+            padding: 1.8rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .card h3 {
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover h3 {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary), var(--highlight));
+            color: white;
+            padding: 0.7rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(232,58,20,0.2);
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(45deg, var(--highlight), var(--primary));
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(232,58,20,0.3);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 4rem auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: linear-gradient(to bottom, var(--secondary), var(--primary));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+        
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12px;
+            background-color: white;
+            border: 4px solid var(--accent);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-container:hover::after {
+            transform: scale(1.2);
+            background-color: var(--secondary);
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 25px;
+            background-color: white;
+            position: relative;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255,107,0,0.2);
+            border-left-color: var(--primary);
+        }
+        
+        .timeline-content img {
+            transition: all 0.4s ease;
+            border-radius: 8px;
+        }
+        
+        .timeline-content:hover img {
+            transform: scale(1.05);
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark), var(--accent));
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-color: white;
+            transform: skewY(-2deg);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: rgba(255,255,255,0.3);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Elementos animados */
+        .intro h2 {
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+        
+        .card {
+            animation: fadeIn 1s ease-out;
+        }
+        
+        footer h3 {
+            animation: fadeIn 1s ease-out;
+        }
+        
+        /* Efecto de confeti al hacer hover en botones */
+        .btn-confeti {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-confeti::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: radial-gradient(circle, transparent 20%, var(--secondary) 21%, transparent 22%),
+                        radial-gradient(circle, transparent 20%, var(--primary) 21%, transparent 22%),
+                        radial-gradient(circle, transparent 20%, white 21%, transparent 22%);
+            background-size: 15px 15px;
+            background-position: 0 0, 10px 10px, 5px 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .btn-confeti:hover::after {
+            opacity: 0.4;
+        }
+        
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-container::before {
+                left: 60px;
+                border: medium solid var(--secondary);
+                border-width: 10px 10px 10px 0;
+                border-color: transparent var(--secondary) transparent transparent;
+            }
+            
+            .left::after, .right::after {
+                left: 18px;
+            }
+            
+            .right {
+                left: 0%;
+            }
+            
+            .intro {
+                padding: 2rem;
+            }
+            
+            .card:hover {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="float-animation">
+        <div class="container">
+            <img src="ant.png" alt="Descripción de la imagen">
+            <h1>Festividad de la Antioqueñidad</h1>
+            <p>Celebrando la cultura, tradiciones y orgullo de nuestra tierra paisa</p>
+        </div>
+    </header>
+    
+    <section class="intro container">
+        <h2>Nuestra Identidad Cultural</h2>
+        <p>La Antioqueñidad es la celebración del patrimonio cultural del departamento de Antioquia, Colombia. Cada año, durante el mes de agosto, se realizan diversas actividades que exaltan las tradiciones, la gastronomía, la música y las costumbres que identifican a los antioqueños.</p>
+    </section>
+    
+    <main class="container">
+        <section id="tradiciones">
+            <h2>Tradiciones Antioqueñas</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="Desfile-de-Silleteros-38.jpeg" alt="Desfile de silleteros con coloridos arreglos florales en el pueblo de Santa Elena" />
+                    </div>
+                    <div class="card-content">
+                        <h3>Los Silleteros</h3>
+                        <p>Los silleteros son campesinos que durante generaciones han transportado flores en silletas (estructuras de madera) en sus espaldas. Hoy es un símbolo cultural que se exhibe en desfiles como el de la Feria de las Flores.</p>
+                        <a href="#" class="btn btn-confeti">Conocer más</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0a70fe0d-e8e8-4e34-b706-22477ad5fbd3.png" alt="Grupo de músicos vestidos de campesinos tocando instrumentos tradicionales como tiple y bandola en un parque" />
+                    </div>
+                    <div class="card-content">
+                        <h3>Música Carranguera</h3>
+                        <p>Los sonidos del tiple, la bandola y la guitarra acompañan las historias campesinas en esta música típica. Artistas como el dúo musical de Los Tolimenses la popularizaron.</p>
+                        <a href="#" class="btn btn-confeti">Conocer más</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-image">
+                        <img src="ARTESANIAS-2-69.jpg" alt="Mujer mayor tejiendo una alpargata de fique artesanal en un patio colonial" />
+                    </div>
+                    <div class="card-content">
+                        <h3>Artesanías en Fique</h3>
+                        <p>El fique es una fibra vegetal con la que se elaboran alpargatas, bolsos y otros objetos utilitarios. Es una tradición que pasa de generación en generación.</p>
+                        <a href="#" class="btn btn-confeti">Conocer más</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="gastronomia">
+            <h2>Gastronomía Típica</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c7df77d2-ada3-47c8-80d7-4e372b6767be.png" alt="Bandeja paisa servida en plato de barro con todos sus componentes: fríjoles, arroz, carne, chicharrón" />
+                    </div>
+                    <div class="card-content">
+                        <h3>Bandeja Paisa</h3>
+                        <p>Plato insignia compuesto por fríjoles, arroz, carne molida, chicharrón, chorizo, huevo frito, aguacate, arepa y plátano maduro. Un festín de sabores que representa la abundancia campesina.</p>
+                        <a href="#" class="btn btn-confeti">Conocer más</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="arepa-paisa.webp" alt="Mujer preparando arepas de maíz en fogón de leña en cocina tradicional" />
+                    </div>
+                    <div class="card-content">
+                        <h3>Arepa Antioqueña</h3>
+                        <p>Las arepas de maíz blanco, hechas a mano y cocinadas en fogón de leña, son el acompañamiento infaltable en cualquier comida. Algunas llevan queso o mantequilla.</p>
+                        <a href="#" class="btn btn-confeti">Conocer más</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="ajmm84q0efu91.jpg" alt="Postre de natilla con bocadillo en plato de barro decorado con canela molida" />
+                    </div>
+                    <div class="card-content">
+                        <h3>Natilla y Buñuelos</h3>
+                        <p>Dulce tradicional de navidad pero que se disfruta todo el año. La natilla es un postre de maíz con panela y los buñuelos son bolas fritas de harina de maíz y queso.</p>
+                        <a href="#" class="btn btn-confeti">Conocer más</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="vestuario">
+            <h2>Vestuario Tradicional</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="E4CJlTUVUAA1lav.jpg" alt="Hombre antioqueño con ruana negra, sombrero aguadeño, carriel y alpargatas" />
+                    </div>
+                    <div class="card-content">
+                        <h3>Vestuario Masculino</h3>
+                        <p>El atuendo típico del hombre paisa incluye ruana de lana, sombrero aguadeño, carriel (bolso de cuero), camisa blanca, pantalón negro y alpargatas de fique.</p>
+                        <a href="#" class="btn btn-confeti">Conocer más</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="1988f1401ebc7f4d231154ec60ac4482.jpg" alt="Mujer con blusa blanca bordada, falda larga de colores vivos, pañolón y alpargatas" />
+                    </div>
+                    <div class="card-content">
+                        <h3>Vestuario Femenino</h3>
+                        <p>La mujer antioqueña tradicional viste blusa blanca bordada, falda larga de colores vivos, pañolón (chal de lana), alpargatas y sombrero aguadeño.</p>
+                        <a href="#" class="btn btn-confeti">Conocer más</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="bambuco.jpg" alt="Familia vestida con trajes típicos en un pueblo antioqueño, con casas coloniales de fondo" />
+                    </div>
+                    <div class="card-content">
+                        <h3>Bailes Típicos</h3>
+                        <p>En festividades y eventos culturales se aprecian bailes como el pasillo, el bambuco y la danza del sombrero, donde los trajes típicos son protagonistas.</p>
+                        <a href="#" class="btn btn-confeti">Conocer más</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="eventos">
+            <h2>Eventos Culturales</h2>
+            <div class="timeline">
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3>Feria de las Flores</h3>
+                        <p>Agosto 1-10</p>
+                        <p>El evento más emblemático con el Desfile de Silleteros, Tablados Musicales y Exposición de Orquídeas.</p>
+                        <img src="chajajaa.jpg" alt="Multitud en las calles de Medellín viendo pasar el desfile de silleteros con arreglos florales gigantes" />
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <h3>Festival Nacional de la Trova</h3>
+                        <p>Agosto 15-18</p>
+                        <p>En Santa Fe de Antioquia, poetas improvisan versos humorísticos acompañados de música típica.</p>
+                        <img src="festival_trova_2025.jpg" alt="Trovadores cantando versos improvisados en plaza colonial bajo faroles antiguos" />
+                    </div>
+                </div>
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3>Día del Campesino</h3>
+                        <p>Agosto 20</p>
+                        <p>Celebración en municipios rurales con muestras de artesanías, comidas y concursos de labores campesinas.</p>
+                        <img src="Imagen-de-campesino-con-su-cosecha.jpg" alt="Campesinos exhibiendo productos agrícolas en feria rural con montañas de fondo" />
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content">  
+                        <h3>Festival del Río</h3>
+                        <p>Agosto 25-30</p>
+                        <p>En Puerto Triunfo, celebración de la cultura mazamorrera con deportes acuáticos y conciertos.</p>
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/aa8179dd-e766-4d27-b82e-7798c220a88f.png" alt="Celebración a orillas del río con gente en lanchas, música y puestos de comida" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="datos-curiosos">
+            <h2>Datos Curiosos</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>¿Sabías que...?</h3>
+                        <p>La palabra "paisa" viene de "paisano" y originalmente se refería a los habitantes de la región montañosa de Antioquia, Caldas, Risaralda y Quindío.</p>
+                        <div class="btn btn-confeti">¡Sorprendente!</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Dato Histórico</h3>
+                        <p>Antioquia fue cuna de la colonización antioqueña, movimiento migratorio del siglo XIX que pobló el occidente colombiano.</p>
+                        <div class="btn btn-confeti">Saber más</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Expresión Típica</h3>
+                        <p>"¡Aura pues!" es una expresión muy paisa que puede significar desde un saludo hasta indicar que algo es evidente.</p>
+                        <div class="btn btn-confeti">¡Aura pues!</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <h3 class="pulse-animation">Celebra y vive la Antioqueñidad</h3>
+            <p>Todos los años en agosto, en los pueblos y ciudades de Antioquia</p>
+            <div class="social-links">
+                <a href="#" aria-label="Enlace a Facebook">FB</a>
+                <a href="#" aria-label="Enlace a Instagram">IG</a>
+                <a href="#" aria-label="Enlace a YouTube">YT</a>
+            </div>
+            <p>© 2023 Cultura Antioqueña. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animación suave al desplazarse
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Efecto de onda al hacer hover en tarjetas
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const wave = document.createElement('div');
+                wave.style.position = 'absolute';
+                wave.style.background = 'rgba(255,255,255,0.4)';
+                wave.style.borderRadius = '50%';
+                wave.style.transform = 'scale(0)';
+                wave.style.animation = 'wave 0.6s linear';
+                wave.style.pointerEvents = 'none';
+                wave.style.width = '200px';
+                wave.style.height = '200px';
+                wave.style.top = (event.offsetY - 100) + 'px';
+                wave.style.left = (event.offsetX - 100) + 'px';
+                
+                card.appendChild(wave);
+                
+                setTimeout(() => {
+                    wave.remove();
+                }, 600);
+            });
+        });
+        
+        // Inyectar estilos para la animación de onda
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes wave {
+                to {
+                    opacity: 0;
+                    transform: scale(2);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Animación de confeti al hacer clic en botones
+        document.querySelectorAll('.btn-confeti').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                createConfetti(e.target);
+            });
+        });
+        
+        function createConfetti(element) {
+            const rect = element.getBoundingClientRect();
+            const confettiContainer = document.createElement('div');
+            confettiContainer.style.position = 'fixed';
+            confettiContainer.style.width = '10px';
+            confettiContainer.style.height = '10px';
+            confettiContainer.style.left = rect.left + rect.width/2 + 'px';
+            confettiContainer.style.top = rect.top + 'px';
+            confettiContainer.style.pointerEvents = 'none';
+            confettiContainer.style.zIndex = '1000';
+            
+            document.body.appendChild(confettiContainer);
+            
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.width = '10px';
+                    confetti.style.height = '10px';
+                    confetti.style.backgroundColor = ['var(--primary)', 'var(--secondary)', 'var(--accent)', 'var(--highlight)'][Math.floor(Math.random()*4)];
+                    confetti.style.position = 'absolute';
+                    confetti.style.left = '0';
+                    confetti.style.top = '0';
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.transform = `rotate(${Math.random()*360}deg)`;
+                    
+                    const animation = confetti.animate([
+                        { 
+                            transform: 'translate(0, 0) rotate(0deg)', 
+                            opacity: 1 
+                        },
+                        { 
+                            transform: `translate(${Math.random()*100-50}px, ${Math.random()*100+100}px) rotate(${Math.random()*360}deg)`, 
+                            opacity: 0 
+                        }
+                    ], {
+                        duration: 1000 + Math.random()*1000,
+                        easing: 'cubic-bezier(0,0.8,0.4,1)'
+                    });
+                    
+                    animation.onfinish = () => confetti.remove();
+                    
+                    confettiContainer.appendChild(confetti);
+                }, i * 50);
+            }
+            
+            setTimeout(() => {
+                confettiContainer.remove();
+            }, 2000);
+        }
+        
+        // Mostrar fecha y hora actual con animación
+        function updateDateTime() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            const dateTimeStr = now.toLocaleDateString('es-CO', options);
+            const dateTimeElement = document.createElement('div');
+            dateTimeElement.id = 'datetime';
+            dateTimeElement.textContent = dateTimeStr;
+            dateTimeElement.style.position = 'fixed';
+            dateTimeElement.style.bottom = '20px';
+            dateTimeElement.style.right = '20px';
+            dateTimeElement.style.background = 'var(--primary)';
+            dateTimeElement.style.color = 'white';
+            dateTimeElement.style.padding = '10px 15px';
+            dateTimeElement.style.borderRadius = '20px';
+            dateTimeElement.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+            dateTimeElement.style.zIndex = '1000';
+            dateTimeElement.style.fontSize = '0.8rem';
+            dateTimeElement.style.opacity = '0';
+            dateTimeElement.style.transition = 'opacity 0.3s';
+            
+            const existingElement = document.getElementById('datetime');
+            if (existingElement) {
+                existingElement.textContent = dateTimeStr;
+                return;
+            }
+            
+            document.body.appendChild(dateTimeElement);
+            setTimeout(() => {
+                dateTimeElement.style.opacity = '1';
+            }, 100);
+        }
+        
+        setInterval(updateDateTime, 60000);
+        updateDateTime();
+    </script>
+</body>
+</html>

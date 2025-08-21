@@ -213,85 +213,93 @@
             box-shadow: 0 6px 12px rgba(232,58,20,0.3);
         }
         
-      .timeline {
-    position: relative;
-    max-width: 1250px;
-    margin: 4rem auto;
-}
-
-.timeline::after {
-    content: '';
-    position: absolute;
-    width: 6px;
-    background: linear-gradient(to bottom, var(--secondary), var(--primary));
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -3px;
-    border-radius: 3px;
-}
-
-.timeline-container {
-    padding: 10px 40px;
-    position: relative;
-    background-color: inherit;
-    width: 50%;
-}
-
-.timeline-container::after {
-    content: '';
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    right: -12px;
-    background-color: white;
-    border: 4px solid var(--accent);
-    top: 15px;
-    border-radius: 50%;
-    z-index: 1;
-    transition: all 0.3s ease;
-}
-
-.timeline-container:hover::after {
-    transform: scale(1.2);
-    background-color: var(--secondary);
-}
-
-.left {
-    left: 0;
-}
-
-.right {
-    left: 50%;
-}
-
-.timeline-content {
-    padding: 25px;
-    background-color: white;
-    position: relative;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    border-left: 4px solid transparent;
-}
-
-.timeline-content:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(255,107,0,0.2);
-    border-left-color: var(--primary);
-}
-
-.timeline-content img {
-    transition: all 0.4s ease;
-    border-radius: 8px;
-    /* --- Cambios aquí --- */
-    max-width: 100%; /* Ajusta el ancho de la imagen para que no desborde el contenedor */
-    height: auto; /* Mantiene la proporción de la imagen */
-}
-
-.timeline-content:hover img {
-    transform: scale(1.05);
-}
+            .carousel-timeline {
+                position: relative;
+                max-width: 700px;
+                margin: 3rem auto 4rem auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .carousel-track {
+                width: 100%;
+                overflow: hidden;
+                position: relative;
+                min-height: 420px;
+            }
+            .carousel-slide {
+                display: none;
+                width: 100%;
+                transition: opacity 0.5s;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+            .carousel-slide.active {
+                display: block;
+                position: relative;
+                animation: fadeIn 0.7s;
+            }
+            .carousel-btn {
+                background: linear-gradient(135deg, var(--primary), var(--secondary));
+                color: white;
+                border: none;
+                border-radius: 50%;
+                width: 48px;
+                height: 48px;
+                font-size: 2rem;
+                cursor: pointer;
+                margin: 0 1rem;
+                box-shadow: 0 4px 12px rgba(255,107,0,0.15);
+                transition: background 0.3s, transform 0.2s;
+                z-index: 2;
+            }
+            .carousel-btn:hover {
+                background: linear-gradient(135deg, var(--secondary), var(--primary));
+                transform: scale(1.1);
+            }
+            .carousel-timeline .timeline-content {
+                padding: 2.2rem 2rem 1.5rem 2rem;
+                background: white;
+                border-radius: 16px;
+                box-shadow: 0 6px 16px rgba(255,107,0,0.10);
+                border-left: 5px solid var(--primary);
+                min-height: 340px;
+                max-width: 540px;
+                margin: 0 auto;
+                text-align: center;
+            }
+            .carousel-timeline .timeline-content img {
+                margin-top: 1.2rem;
+                border-radius: 10px;
+                max-width: 100%;
+                height: auto;
+                box-shadow: 0 2px 8px rgba(255,107,0,0.08);
+                transition: transform 0.4s;
+            }
+            .carousel-timeline .timeline-content:hover img {
+                transform: scale(1.05);
+            }
+            @media (max-width: 800px) {
+                .carousel-timeline {
+                    max-width: 98vw;
+                }
+                .carousel-timeline .timeline-content {
+                    padding: 1.2rem 0.5rem 1rem 0.5rem;
+                    min-height: 220px;
+                }
+            }
+            @media (max-width: 500px) {
+                .carousel-timeline .timeline-content {
+                    font-size: 0.98rem;
+                    min-height: 120px;
+                }
+                .carousel-btn {
+                    width: 36px;
+                    height: 36px;
+                    font-size: 1.3rem;
+                }
+            }
         
         footer {
             background: linear-gradient(135deg, var(--dark), var(--accent));
@@ -575,39 +583,43 @@
         
         <section id="eventos">
             <h2>Eventos Culturales</h2>
-            <div class="timeline">
-                <div class="timeline-container left">
-                    <div class="timeline-content">
-                        <h3>Feria de las Flores</h3>
-                        <p>Agosto 1-10</p>
-                        <p>El evento más emblemático con el Desfile de Silleteros, Tablados Musicales y Exposición de Orquídeas.</p>
-                        <img src="chajajaa.jpg" alt="Multitud en las calles de Medellín viendo pasar el desfile de silleteros con arreglos florales gigantes" />
+            <div class="carousel-timeline">
+                <button class="carousel-btn prev" aria-label="Anterior">&#10094;</button>
+                <div class="carousel-track">
+                    <div class="carousel-slide active">
+                        <div class="timeline-content">
+                            <h3>Feria de las Flores</h3>
+                            <p>Agosto 1-10</p>
+                            <p>El evento más emblemático con el Desfile de Silleteros, Tablados Musicales y Exposición de Orquídeas.</p>
+                            <img src="chajajaa.jpg" alt="Multitud en las calles de Medellín viendo pasar el desfile de silleteros con arreglos florales gigantes" />
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="timeline-content">
+                            <h3>Festival Nacional de la Trova</h3>
+                            <p>Agosto 15-18</p>
+                            <p>En Santa Fe de Antioquia, poetas improvisan versos humorísticos acompañados de música típica.</p>
+                            <img src="festival_trova_2025.jpg" alt="Trovadores cantando versos improvisados en plaza colonial bajo faroles antiguos" />
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="timeline-content">
+                            <h3>Día del Campesino</h3>
+                            <p>Agosto 20</p>
+                            <p>Celebración en municipios rurales con muestras de artesanías, comidas y concursos de labores campesinas.</p>
+                            <img src="Imagen-de-campesino-con-su-cosecha.jpg" alt="Campesinos exhibiendo productos agrícolas en feria rural con montañas de fondo" />
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="timeline-content">
+                            <h3>Festival del Río</h3>
+                            <p>Agosto 25-30</p>
+                            <p>En Puerto Triunfo, celebración de la cultura mazamorrera con deportes acuáticos y conciertos.</p>
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/aa8179dd-e766-4d27-b82e-7798c220a88f.png" alt="Celebración a orillas del río con gente en lanchas, música y puestos de comida" />
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-container right">
-                    <div class="timeline-content">
-                        <h3>Festival Nacional de la Trova</h3>
-                        <p>Agosto 15-18</p>
-                        <p>En Santa Fe de Antioquia, poetas improvisan versos humorísticos acompañados de música típica.</p>
-                        <img src="festival_trova_2025.jpg" alt="Trovadores cantando versos improvisados en plaza colonial bajo faroles antiguos" />
-                    </div>
-                </div>
-                <div class="timeline-container left">
-                    <div class="timeline-content">
-                        <h3>Día del Campesino</h3>
-                        <p>Agosto 20</p>
-                        <p>Celebración en municipios rurales con muestras de artesanías, comidas y concursos de labores campesinas.</p>
-                        <img src="Imagen-de-campesino-con-su-cosecha.jpg" alt="Campesinos exhibiendo productos agrícolas en feria rural con montañas de fondo" />
-                    </div>
-                </div>
-                <div class="timeline-container right">
-                    <div class="timeline-content">  
-                        <h3>Festival del Río</h3>
-                        <p>Agosto 25-30</p>
-                        <p>En Puerto Triunfo, celebración de la cultura mazamorrera con deportes acuáticos y conciertos.</p>
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/aa8179dd-e766-4d27-b82e-7798c220a88f.png" alt="Celebración a orillas del río con gente en lanchas, música y puestos de comida" />
-                    </div>
-                </div>
+                <button class="carousel-btn next" aria-label="Siguiente">&#10095;</button>
             </div>
         </section>
         
@@ -653,6 +665,45 @@
     </footer>
 
     <script>
+        // Carrusel para timeline de eventos
+        (function() {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const prevBtn = document.querySelector('.carousel-btn.prev');
+            const nextBtn = document.querySelector('.carousel-btn.next');
+            let current = 0;
+            function showSlide(idx) {
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === idx);
+                });
+            }
+            function nextSlide() {
+                current = (current + 1) % slides.length;
+                showSlide(current);
+            }
+            function prevSlide() {
+                current = (current - 1 + slides.length) % slides.length;
+                showSlide(current);
+            }
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', prevSlide);
+                nextBtn.addEventListener('click', nextSlide);
+            }
+            // Swipe para móvil
+            let startX = null;
+            const track = document.querySelector('.carousel-track');
+            if (track) {
+                track.addEventListener('touchstart', e => {
+                    startX = e.touches[0].clientX;
+                });
+                track.addEventListener('touchend', e => {
+                    if (startX === null) return;
+                    let endX = e.changedTouches[0].clientX;
+                    if (endX - startX > 50) prevSlide();
+                    else if (startX - endX > 50) nextSlide();
+                    startX = null;
+                });
+            }
+        })();
         // Animación suave al desplazarse
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
